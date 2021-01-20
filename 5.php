@@ -4,22 +4,31 @@
 */
 
 class Player{
-	public $Number;
 	public $Name;
+	public $Number;
 	public $Status = 'Active';
 
-	function __construct($Number){
-		$this -> Number = $Number;
+	function __construct($number){
+		$this -> Number = $number;
 		$this -> Name = readline("Введите имя игрока № $this->Number : ");
 		echo "Игрок № $this->Number с именем $this->Name\n";
 	}
+
+	public function AskWord(){
+		//$this -> temp = readline("Введите : ");
+		$objGame->ArrWords[] = readline("Введите слово, которое начинается на Х: ");
+	}
 }
 //$obj = new Player(1);
-/*
+
 Class Tour{
-
+	function __construct(){
+		foreach ($this->ArrObjPlayers as $key) {
+			$key->AskWord();
+		}
+	}
 }
-
+/*
 Class Winer{
 
 }
@@ -28,6 +37,7 @@ class Game{
 	public $NumberOfPlayers;
 	public $ArrObjPlayers = array();
 	public $ArrWords = array();
+	public $Winer = "no";
 
 	function __construct(){
 		//Создаем массив игроков
@@ -35,17 +45,20 @@ class Game{
 		for ($i=1; $i <= $this->NumberOfPlayers; $i++) { 
 			$this->ArrObjPlayers["Player$i"] = new Player($i);
 		}
+		print_r($this->ArrObjPlayers);
 		/*
 		//начинаем игру
 		do {
-			# Tour
-		} while (нет победителя);
+			$objTour = new Tour();
+
+		} while ($this->Winer == "no");
 		*/
 	}
 }
 
+
 $objGame = new Game();
-print_r($objGame->ArrObjPlayers);
+//print_r($objGame->ArrObjPlayers);
 
 /*массив игроков
 Array
@@ -56,21 +69,13 @@ Array
             [Name] => Саша
             [Status] => Active
         )
-
-    [Player2] => Player Object
-        (
-            [Number] => 2
-            [Name] => Маша
-            [Status] => Active
-        )
-
-    [Player3] => Player Object
-        (
-            [Number] => 3
-            [Name] => Коля
-            [Status] => Active
-        )
-
 )
+
+foreach ($objGame->ArrObjPlayers as $key) {
+	echo "$key->Status\n";
+}
 */
+
+//$objTour = new Tour();
+//print_r($objGame->ArrWords);
 ?>
